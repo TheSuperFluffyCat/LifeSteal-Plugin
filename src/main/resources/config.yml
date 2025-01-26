@@ -1,0 +1,15 @@
+# LifeSteal Plugin Configuration
+
+# The name and format of the heart item
+heart-item-name: "&c&lHeart"
+
+# Maximum and minimum health values (in whole hearts)
+max-health: 10
+min-health: 1
+
+# Adventure MiniMessage support for action bars
+messages:
+  no_hearts: "<red>You don't have enough hearts!"
+  success_withdraw: "<green>Successfully withdrew a heart!"
+  success_redeem: "<green>You redeemed %amount% hearts!"
+  reset_success: "<green>%player%'s hearts have been reset!"

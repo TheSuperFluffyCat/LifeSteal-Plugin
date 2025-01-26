@@ -1,0 +1,14 @@
+name: LifeSteal
+version: '1'
+main: org.fliff.lifeSteal.LifeSteal
+api-version: '1.21'
+authors: [ Fluffy ]
+commands:
+  resethearts:
+    description: Resets the hearts of a player.
+    usage: /resethearts <player>
+    permission: lifesteal.reset
+  withdrawheart:
+    description: Withdraws hearts into items.
+    usage: /withdrawheart <amount>
+    permission: lifesteal.withdraw
