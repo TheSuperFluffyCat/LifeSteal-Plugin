@@ -25,7 +25,7 @@ A lightweight, highly configurable Minecraft plugin introducing a **LifeSteal me
 3. Start your server and configure `config.yml` to fit your server's style.
 
 
-## Feature Planned on Version 2
+## Future plans on Version 2
 
 1. PlayerDeathListener logic and added config option for no HP loss on full health ✅
 2. Crafteble Heart Items with config settings ⭕
