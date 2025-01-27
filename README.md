@@ -1,4 +1,4 @@
-# LifeSteal Plugin
+# LifeSteal Plugin Version 2
 
 A lightweight, highly configurable Minecraft plugin introducing a **LifeSteal mechanic**. Perfect for servers of any size, from small communities to large-scale networks!
 
@@ -24,6 +24,13 @@ A lightweight, highly configurable Minecraft plugin introducing a **LifeSteal me
 2. Place it in your server's `/plugins` folder.
 3. Start your server and configure `config.yml` to fit your server's style.
 
+
+## Feature Planned on Version 2
+
+1. PlayerDeathListener logic and added config option for no HP loss on full health ✅
+2. Crafteble Heart Items with config settings ⭕
+3. People with 0 heart get banned and can be respawened with a special item
+   by other people - config ⭕
 ---
 
 💡 *Perfect for PvP-focused gameplay or unique server concepts – scales seamlessly for small and large servers alike!*
