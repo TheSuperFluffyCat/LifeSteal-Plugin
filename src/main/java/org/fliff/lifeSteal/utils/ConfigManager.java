@@ -24,6 +24,10 @@ public class ConfigManager {
         return config.getInt("min-health", 1);
     }
 
+    public boolean isNoHpLossOnFullHealth() {
+        return config.getBoolean("no-hp-loss-on-full-health", true); // Default: true
+    }
+
     public String formatMessage(String message) {
         return ChatColor.translateAlternateColorCodes('&', message);
     }

@@ -3,6 +3,12 @@
 # The name and format of the heart item
 heart-item-name: "&c&lHeart"
 
+# Settings:
+
+# If enabled, victims don't lose health when killed by a player with full HP
+no-hp-loss-on-full-health: true
+
+
 # Maximum and minimum health values (in whole hearts)
 max-health: 10
 min-health: 1
