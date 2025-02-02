@@ -23,20 +23,17 @@ public class PlayerDeathListener implements Listener {
             double maxHearts = configManager.getMaxHealth() * 2;
             boolean noHpLossOnFullHealth = configManager.isNoHpLossOnFullHealth();
 
-            // Check if the killer is at full health and the config allows no HP loss
-            if (noHpLossOnFullHealth && killerCurrentHealth >= killerMaxHealth) {
-                return; // Skip health deduction for the victim
-            }
+            // Check if killer has full HP and config prevents HP loss
+            if (noHpLossOnFullHealth && killerCurrentHealth >= killerMaxHealth) return;
+
+            // Prevent health dupe: If victim is at minimum health, killer doesn't gain HP
+            if (victimMaxHealth <= minHealth) return;
 
             // Killer gains health (if not at max health)
-            if (killerMaxHealth < maxHearts) {
-                killer.setMaxHealth(killerMaxHealth + 2); // Gain 1 heart (2 health)
-            }
+            if (killerMaxHealth < maxHearts) killer.setMaxHealth(killerMaxHealth + 2);
 
             // Victim loses health (if above minimum health)
-            if (victimMaxHealth > minHealth) {
-                victim.setMaxHealth(victimMaxHealth - 2); // Lose 1 heart (2 health)
-            }
+            victim.setMaxHealth(victimMaxHealth - 2);
         }
     }
 }
