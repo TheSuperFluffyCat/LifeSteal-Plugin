@@ -14,26 +14,26 @@ public class PlayerDeathListener implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player victim = event.getEntity();
         Player killer = victim.getKiller();
+        if (killer == null) return;
 
-        if (killer != null && killer instanceof Player) {
-            double killerMaxHealth = killer.getMaxHealth();
-            double killerCurrentHealth = killer.getHealth();
-            double victimMaxHealth = victim.getMaxHealth();
-            double minHealth = configManager.getMinHealth() * 2;
-            double maxHearts = configManager.getMaxHealth() * 2;
-            boolean noHpLossOnFullHealth = configManager.isNoHpLossOnFullHealth();
+        // Min / Max Health Limits
+        double minHealth = configManager.getMinHealth() * 2;      // e.g., 1 heart (2 HP)
+        double maxHealthLimit = configManager.getMaxHealth() * 2; // Max allowed health in HP
+        boolean noHpLossOnFullHealth = configManager.isNoHpLossOnFullHealth();
 
-            // Check if killer has full HP and config prevents HP loss
-            if (noHpLossOnFullHealth && killerCurrentHealth >= killerMaxHealth) return;
+        double killerCurrentHealth = killer.getHealth();
+        double killerMaxHealth = killer.getMaxHealth();
+        double victimMaxHealth = victim.getMaxHealth();
 
-            // Prevent health dupe: If victim is at minimum health, killer doesn't gain HP
-            if (victimMaxHealth <= minHealth) return;
+        // I hope i fixed the bugs now
+        if (noHpLossOnFullHealth && killerCurrentHealth >= killerMaxHealth) return;
 
-            // Killer gains health (if not at max health)
-            if (killerMaxHealth < maxHearts) killer.setMaxHealth(killerMaxHealth + 2);
+        if (victimMaxHealth <= minHealth) return;
 
-            // Victim loses health (if above minimum health)
-            victim.setMaxHealth(victimMaxHealth - 2);
+        victim.setMaxHealth(Math.max(victimMaxHealth - 2, minHealth));
+
+        if (killerMaxHealth < maxHealthLimit) {
+            killer.setMaxHealth(killerMaxHealth + 2);
         }
     }
 }
