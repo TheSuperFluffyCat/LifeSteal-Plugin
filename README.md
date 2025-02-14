@@ -2,6 +2,9 @@
 
 A lightweight, highly configurable Minecraft plugin introducing a **LifeSteal mechanic**. Perfect for servers of any size, from small communities to large-scale networks!
 
+### This is the Main Version (The first version with SIMPLE and duped bugs LifeSteal)
+### Use Version 2 for more fun and no dupes
+
 ## Features
 - **LifeSteal Mechanic**: Players gain hearts by defeating others in PvP.
 - **Heart Items**: Withdraw hearts into items and redeem them later.
