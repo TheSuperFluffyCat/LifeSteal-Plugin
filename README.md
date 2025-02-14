@@ -9,6 +9,7 @@ A lightweight, highly configurable Minecraft plugin introducing a **LifeSteal me
 - **Commands**:
   - `/withdrawheart <amount>`: Withdraw hearts into tradable items.
   - `/resethearts <player>`: Reset a player's health to default.
+  - `lifestealplugin reload`: Reloads the config of LifeSteal
 
 ## How It Works
 - **Death Mechanics**: Players lose 1 heart (2 health) upon death, and the killer gains 1 heart (if below max health).
@@ -18,6 +19,8 @@ A lightweight, highly configurable Minecraft plugin introducing a **LifeSteal me
 - **Performance**: Designed to run smoothly, even on large servers with many players.
 - **Flexibility**: Fully customizable via `config.yml`, making it adaptable to your server's unique needs.
 - **Adventure MiniMessage**: Use formatted text for action bars and messages.
+- **Fast Dupe / Bug Fixes**: I update my GitHub side fast with fixes and if everything works 100% i will upload them to spigot or modrinth
+- **Open Source**: The Projekt is fully open source 
 
 ## Installation
 1. Download the `.jar` file.
@@ -27,10 +30,15 @@ A lightweight, highly configurable Minecraft plugin introducing a **LifeSteal me
 
 ## Future plans on Version 2
 
-1. PlayerDeathListener logic and added config option for no HP loss on full health ✅
-2. Crafteble Heart Items with config settings ⭕
-3. People with 0 heart get banned and can be respawened with a special item
+1. PlayerDeathListener logic ✅
+2. Dupe fixing ✅
+3. Reload command ✅
+4. Crafteble Heart Items with config settings ⭕
+5. People with 0 heart get banned and can be respawened with a special item
    by other people - config ⭕
+
+
+(Don't reupload this projekt as yours)
 ---
 
 💡 *Perfect for PvP-focused gameplay or unique server concepts – scales seamlessly for small and large servers alike!*
