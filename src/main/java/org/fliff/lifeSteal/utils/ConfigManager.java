@@ -2,14 +2,31 @@ package org.fliff.lifeSteal.utils;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.fliff.lifeSteal.LifeSteal;
+
+import java.io.File;
 
 public class ConfigManager {
 
-    private final FileConfiguration config;
+    private static FileConfiguration config;
+    private static File configFile;
 
     public ConfigManager() {
-        this.config = LifeSteal.getInstance().getConfig();
+        loadConfig();
+    }
+
+    public void loadConfig() {
+        LifeSteal plugin = LifeSteal.getInstance();
+        configFile = new File(plugin.getDataFolder(), "config.yml");
+        if (!configFile.exists()) {
+            plugin.saveDefaultConfig();
+        }
+        config = YamlConfiguration.loadConfiguration(configFile);
+    }
+
+    public void reloadConfig() {
+        loadConfig(); // Reload the config
     }
 
     public String getHeartItemName() {
@@ -22,10 +39,6 @@ public class ConfigManager {
 
     public int getMinHealth() {
         return config.getInt("min-health", 1);
-    }
-
-    public boolean isNoHpLossOnFullHealth() {
-        return config.getBoolean("no-hp-loss-on-full-health", true); // Default: true
     }
 
     public String formatMessage(String message) {
