@@ -2,6 +2,7 @@ package org.fliff.lifeSteal;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.fliff.lifeSteal.commands.ReloadCommand;
 import org.fliff.lifeSteal.commands.ResetHeartsCommand;
 import org.fliff.lifeSteal.commands.WithdrawHeartCommand;
 import org.fliff.lifeSteal.listeners.PlayerDeathListener;
@@ -25,6 +26,7 @@ public final class LifeSteal extends JavaPlugin {
         // Register Commands
         getCommand("resethearts").setExecutor(new ResetHeartsCommand());
         getCommand("withdrawheart").setExecutor(new WithdrawHeartCommand());
+        getCommand("lifestealplugin").setExecutor(new ReloadCommand());
 
         // Register Listeners
         Bukkit.getPluginManager().registerEvents(new PlayerDeathListener(), this);
