@@ -1,18 +1,20 @@
 # LifeSteal Plugin Configuration
 
-# The name and format of the heart item
 heart-item-name: "&c&lHeart"
 
-# Settings:
-
-
-# Maximum and minimum health values (in whole hearts)
 max-health: 20
 min-health: 1
 
-# Adventure MiniMessage support for action bars
+# Feature Toggles
+ban-on-zero-hearts: true
+
+# Messages
 messages:
   no_hearts: "<red>You don't have enough hearts!"
   success_withdraw: "<green>Successfully withdrew a heart!"
   success_redeem: "<green>You redeemed %amount% hearts!"
   reset_success: "<green>%player%'s hearts have been reset!"
+  already-active: "&cYou already have an active revive beacon."
+  ritual-start: "&7Revive ritual activated. Type a banned player name to continue."
+  player-not-banned: "&cThat player is not banned."
+  revive-success: "&aRevived &l{player}&a!"
