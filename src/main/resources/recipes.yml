@@ -1,0 +1,74 @@
+# ==========================================================
+# 🔁 IMPORTANT: Restart required!
+# Any changes made to this file will ONLY take effect
+# after a full server RESTART (not just /reload)
+# ==========================================================
+
+
+heart-item:
+  enabled: false
+  result:
+    type: NETHER_STAR #Item Type of the thing you crafted
+    amount: 1
+  slots:
+    1:
+      type: GOLD_INGOT
+      amount: 1
+    2:
+      type: REDSTONE
+      amount: 1
+    3:
+      type: GOLD_INGOT
+      amount: 1
+    4:
+      type: REDSTONE
+      amount: 1
+    5:
+      type: NETHER_STAR
+      amount: 1
+    6:
+      type: REDSTONE
+      amount: 1
+    7:
+      type: GOLD_INGOT
+      amount: 1
+    8:
+      type: REDSTONE
+      amount: 1
+    9:
+      type: GOLD_INGOT
+      amount: 1
+
+revive-beacon:
+  enabled: true
+  result:
+    type: BEACON #Revive beacon design
+    amount: 1
+  slots:
+    1:
+      type: GOLD_BLOCK
+      amount: 1
+    2:
+      type: EMERALD
+      amount: 1
+    3:
+      type: GOLD_BLOCK
+      amount: 1
+    4:
+      type: EMERALD
+      amount: 1
+    5:
+      type: SOUL_SAND
+      amount: 1
+    6:
+      type: EMERALD
+      amount: 1
+    7:
+      type: GOLD_BLOCK
+      amount: 1
+    8:
+      type: EMERALD
+      amount: 1
+    9:
+      type: GOLD_BLOCK
+      amount: 1
