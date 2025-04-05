@@ -1,7 +1,7 @@
 name: LifeSteal
-version: '1'
+version: '2'
+api-version: 1.20
 main: org.fliff.lifeSteal.LifeSteal
-api-version: '1.21'
 authors: [ Fluffy ]
 commands:
   resethearts:
@@ -12,3 +12,7 @@ commands:
     description: Withdraws hearts into items.
     usage: /withdrawheart <amount>
     permission: lifesteal.withdraw
+  lifestealplugin:
+    description: Manage LifeSteal Plugin
+    usage: /lifestealplugin reload
+    permission: lifesteal.reload
