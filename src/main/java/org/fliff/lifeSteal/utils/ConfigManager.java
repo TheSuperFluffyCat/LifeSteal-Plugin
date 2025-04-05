@@ -44,4 +44,15 @@ public class ConfigManager {
     public String formatMessage(String message) {
         return ChatColor.translateAlternateColorCodes('&', message);
     }
+
+    public String getMessage(String path, String... replacements) {
+        String raw = config.getString("messages." + path, "&cMessage missing: " + path);
+        if (replacements.length % 2 == 0) {
+            for (int i = 0; i < replacements.length; i += 2) {
+                raw = raw.replace(replacements[i], replacements[i + 1]);
+            }
+        }
+        return formatMessage(raw);
+    }
+
 }
