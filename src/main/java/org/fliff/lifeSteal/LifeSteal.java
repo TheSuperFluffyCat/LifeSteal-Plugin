@@ -8,7 +8,6 @@ import org.fliff.lifeSteal.commands.WithdrawHeartCommand;
 import org.fliff.lifeSteal.listeners.PlayerDeathListener;
 import org.fliff.lifeSteal.listeners.ReviveBeaconListener;
 import org.fliff.lifeSteal.listeners.RightClickListener;
-import org.fliff.lifeSteal.utils.RecipeManager;
 import org.fliff.lifeSteal.utils.SlotRecipeManager;
 
 public final class LifeSteal extends JavaPlugin {
