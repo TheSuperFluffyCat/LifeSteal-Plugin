@@ -29,6 +29,9 @@ public class PlayerDeathListener implements Listener {
         Player killer = victim.getKiller();
         if (killer == null) return;
 
+
+        if (killer == victim) return;
+
         double minHealth = configManager.getMinHealth() * 2;
         double maxHealth = configManager.getMaxHealth() * 2;
         boolean banOnZero = LifeSteal.getInstance().getConfig().getBoolean("ban-on-zero-hearts", false);
