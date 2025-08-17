@@ -15,6 +15,7 @@ public class ReloadCommand implements CommandExecutor, TabCompleter {
 
     private final ConfigManager configManager = new ConfigManager();
 
+    ///Reloads the plugin config
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player) || sender.hasPermission("lifesteal.reload")) {
