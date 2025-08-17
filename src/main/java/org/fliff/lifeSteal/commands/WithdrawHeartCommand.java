@@ -18,6 +18,7 @@ public class WithdrawHeartCommand implements CommandExecutor, TabCompleter {
 
     private final ConfigManager configManager = new ConfigManager();
 
+    /// For higher version 1.21.4+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
