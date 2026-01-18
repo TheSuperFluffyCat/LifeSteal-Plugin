@@ -1,14 +1,15 @@
-package org.fliff.lifeSteal;
+package de.survivalnight.luna.lifeSteal;
 
+import de.survivalnight.luna.lifeSteal.commands.ReloadCommand;
+import de.survivalnight.luna.lifeSteal.commands.ResetHeartsCommand;
+import de.survivalnight.luna.lifeSteal.commands.WithdrawHeartCommand;
+import de.survivalnight.luna.lifeSteal.listeners.PlayerDeathListener;
+import de.survivalnight.luna.lifeSteal.listeners.ReviveBeaconListener;
+import de.survivalnight.luna.lifeSteal.listeners.RightClickListener;
+import de.survivalnight.luna.lifeSteal.utils.ConfigManager;
+import de.survivalnight.luna.lifeSteal.utils.SlotRecipeManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.fliff.lifeSteal.commands.ReloadCommand;
-import org.fliff.lifeSteal.commands.ResetHeartsCommand;
-import org.fliff.lifeSteal.commands.WithdrawHeartCommand;
-import org.fliff.lifeSteal.listeners.PlayerDeathListener;
-import org.fliff.lifeSteal.listeners.ReviveBeaconListener;
-import org.fliff.lifeSteal.listeners.RightClickListener;
-import org.fliff.lifeSteal.utils.SlotRecipeManager;
 
 public final class LifeSteal extends JavaPlugin {
 
@@ -31,7 +32,8 @@ public final class LifeSteal extends JavaPlugin {
 
         // Register Commands
         getCommand("resethearts").setExecutor(new ResetHeartsCommand());
-        getCommand("withdrawheart").setExecutor(new WithdrawHeartCommand());
+        getCommand("withdrawheart").setExecutor(new WithdrawHeartCommand(this, new ConfigManager()));
+
         getCommand("lifestealplugin").setExecutor(new ReloadCommand());
 
         // Register Listeners
