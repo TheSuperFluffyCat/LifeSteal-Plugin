@@ -1,58 +1,81 @@
-package org.fliff.lifeSteal.utils;
+package de.survivalnight.luna.lifeSteal.utils;
 
+import de.survivalnight.luna.lifeSteal.LifeSteal;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.fliff.lifeSteal.LifeSteal;
-
-import java.io.File;
 
 public class ConfigManager {
 
-    private static FileConfiguration config;
-    private static File configFile;
+    private final LifeSteal plugin;
+    private final MiniMessage mini = MiniMessage.miniMessage();
+    private final LegacyComponentSerializer legacy =
+            LegacyComponentSerializer.builder()
+                    .character('§')
+                    .hexColors()
+                    .useUnusualXRepeatedCharacterHexFormat()
+                    .build();
 
     public ConfigManager() {
-        loadConfig();
+        this.plugin = LifeSteal.getInstance();
+        plugin.saveDefaultConfig();
     }
 
-    public void loadConfig() {
-        LifeSteal plugin = LifeSteal.getInstance();
-        configFile = new File(plugin.getDataFolder(), "config.yml");
-        if (!configFile.exists()) {
-            plugin.saveDefaultConfig();
-        }
-        config = YamlConfiguration.loadConfiguration(configFile);
+    private FileConfiguration cfg() {
+        return plugin.getConfig();
     }
 
     public void reloadConfig() {
-        loadConfig(); // Reload the config
+        plugin.reloadConfig();
     }
 
+
+
     public String getHeartItemName() {
-        return ChatColor.translateAlternateColorCodes('&', config.getString("heart-item-name", "&c&lHeart"));
+        return formatMessage(
+                cfg().getString("heart-item-name", "&c&lHeart")
+        );
     }
 
     public int getMaxHealth() {
-        return config.getInt("max-health", 20);
+        return cfg().getInt("max-health", 20);
     }
 
     public int getMinHealth() {
-        return config.getInt("min-health", 1);
+        return cfg().getInt("min-health", 1);
     }
-
-    public String formatMessage(String message) {
-        return ChatColor.translateAlternateColorCodes('&', message);
-    }
+    
 
     public String getMessage(String path, String... replacements) {
-        String raw = config.getString("messages." + path, "&cMessage missing: " + path);
+        String raw = cfg().getString(
+                "messages." + path,
+                "&cMessage missing: " + path
+        );
+
         if (replacements.length % 2 == 0) {
             for (int i = 0; i < replacements.length; i += 2) {
                 raw = raw.replace(replacements[i], replacements[i + 1]);
             }
         }
+
         return formatMessage(raw);
     }
+    
 
+    public String formatMessage(String input) {
+        if (input == null || input.isEmpty()) return "";
+
+        if (input.indexOf('<') != -1 && input.indexOf('>') != -1) {
+            try {
+                Component component = mini.deserialize(input);
+                return legacy.serialize(component);
+            } catch (Exception ignored) {
+            }
+        }
+
+        // Legacy fallback since i like them
+        return ChatColor.translateAlternateColorCodes('&', input);
+    }
 }
