@@ -1,5 +1,6 @@
-package org.fliff.lifeSteal.utils;
+package de.survivalnight.luna.lifeSteal.utils;
 
+import de.survivalnight.luna.lifeSteal.LifeSteal;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -9,7 +10,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.fliff.lifeSteal.LifeSteal;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,7 +50,12 @@ public class SlotRecipeManager {
             // Auto-NBT & DisplayName
             if (key.equalsIgnoreCase("heart-item")) {
                 meta.setDisplayName(new ConfigManager().getHeartItemName());
-                NBTUtils.addNBTTag(meta, "HeartItem", "1");
+
+                meta.getPersistentDataContainer().set(
+                        new NamespacedKey(LifeSteal.getInstance(), "lifesteal_heart_item"),
+                        PersistentDataType.BYTE,
+                        (byte) 1
+                );
             } else if (key.equalsIgnoreCase("revive-beacon")) {
                 meta.setDisplayName("§bRevive Beacon");
                 NBTUtils.addNBTTag(meta, "ReviveBeacon", "1");
@@ -102,7 +108,7 @@ public class SlotRecipeManager {
     private void loadRecipeFile() {
         File file = new File(plugin.getDataFolder(), "recipes.yml");
         if (!file.exists()) {
-            plugin.saveResource("recipes.yml", false); // optional: include default in jar
+            plugin.saveResource("recipes.yml", false); 
         }
         recipeConfig = YamlConfiguration.loadConfiguration(file);
     }
