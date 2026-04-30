@@ -15,7 +15,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.configuration.file.YamlConfiguration;
 
+import java.io.File;
 import java.util.*;
 
 public class WithdrawHeartCommand implements CommandExecutor, TabCompleter {
@@ -149,7 +151,7 @@ public class WithdrawHeartCommand implements CommandExecutor, TabCompleter {
     }
 
     private ItemStack createHeartItem(int amount) {
-        ItemStack item = new ItemStack(Material.NETHER_STAR, amount);
+        ItemStack item = new ItemStack(getConfiguredHeartMaterial(), amount);
         ItemMeta meta = item.getItemMeta();
 
         String name = configManager.getHeartItemName();
@@ -164,6 +166,17 @@ public class WithdrawHeartCommand implements CommandExecutor, TabCompleter {
         return item;
     }
 
+
+
+    private Material getConfiguredHeartMaterial() {
+        File recipeFile = new File(plugin.getDataFolder(), "recipes.yml");
+        if (!recipeFile.exists()) return Material.NETHER_STAR;
+
+        String matName = YamlConfiguration.loadConfiguration(recipeFile)
+                .getString("heart-item.result.type", "NETHER_STAR");
+        Material material = Material.matchMaterial(matName);
+        return material != null ? material : Material.NETHER_STAR;
+    }
     private boolean canFullyFit(Inventory inv, ItemStack stack) {
         if (stack == null || stack.getType() == Material.AIR || stack.getAmount() <= 0) return true;
 
@@ -253,3 +266,7 @@ public class WithdrawHeartCommand implements CommandExecutor, TabCompleter {
         return null;
     }
 }
+
+
+
+
