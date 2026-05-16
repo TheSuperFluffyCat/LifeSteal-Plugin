@@ -16,6 +16,8 @@ public class RightClickListener implements Listener {
     private final ConfigManager configManager = new ConfigManager();
     private final NamespacedKey heartKey =
             new NamespacedKey(LifeSteal.getInstance(), "lifesteal_heart_item");
+    private final NamespacedKey legacyHeartKey =
+            new NamespacedKey(LifeSteal.getInstance(), "HeartItem");
 
     @EventHandler
     public void onPlayerRightClick(PlayerInteractEvent event) {
@@ -25,7 +27,9 @@ public class RightClickListener implements Listener {
         if (item == null || !item.hasItemMeta()) return;
 
         ItemMeta meta = item.getItemMeta();
-        if (!meta.getPersistentDataContainer().has(heartKey, PersistentDataType.BYTE)) return;
+        boolean isHeartItem = meta.getPersistentDataContainer().has(heartKey, PersistentDataType.BYTE)
+                || meta.getPersistentDataContainer().has(legacyHeartKey, PersistentDataType.STRING);
+        if (!isHeartItem) return;
 
         double maxHealth = player.getMaxHealth();
         double maxAllowedHealth = configManager.getMaxHealth() * 2;
